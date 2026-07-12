@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lutera — The 60-Second Eye Health Score</title>
+<style>
+  @font-face{font-family:'LuteraWordmark';src:url(data:font/ttf;base64,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) format('truetype');font-display:swap}
+  :root{
+    --ink:#46301F;            /* deep brown from the Lutera wordmark */
+    --ink-soft:#6E543C;
+    --gold:#D9A036;           /* packaging gold */
+    --gold-deep:#B9822A;
+    --marigold:#E08A2C;       /* flower orange — highlight/focus color */
+    --pale:#F8F1E2;           /* cream page background */
+    --cream:#FFFBF2;          /* card background */
+    --line:#E7DCC4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--pale);color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+  .shell{width:100%;max-width:600px;padding:0 20px 40px;display:flex;flex-direction:column;flex:1}
+
+  /* header — serif wordmark to match the packaging */
+  .brand{text-align:center;padding:26px 0 0}
+  .brand .word{font-family:'LuteraWordmark',Georgia,serif;font-weight:600;font-size:38px;letter-spacing:0;color:var(--ink)}
+  .brand-rule{width:44px;height:3px;background:var(--gold);margin:8px auto 0;border-radius:2px}
+
+  /* progress */
+  .progress{height:6px;background:var(--line);border-radius:3px;margin:18px 0 8px;overflow:hidden;visibility:hidden}
+  .progress .fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--marigold));border-radius:3px;transition:width .35s ease}
+  .step-count{font-size:12px;color:var(--ink-soft);text-align:right;min-height:16px;visibility:hidden}
+
+  /* screens */
+  .screen{display:none;animation:fadeUp .35s ease;padding-top:10px}
+  .screen.active{display:block}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  h1{font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:clamp(28px,6vw,38px);line-height:1.15;text-align:center;margin:18px 0 12px}
+  h2{font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:clamp(21px,5vw,27px);line-height:1.25;margin:10px 0 4px}
+  .sub{color:var(--ink-soft);font-size:16px;line-height:1.55;text-align:center;margin-bottom:24px}
+  .q-sub{color:var(--ink-soft);font-size:14px;margin:2px 0 14px}
+
+  .cta{display:block;width:100%;border:0;cursor:pointer;background:var(--ink);color:#FFFBF2;font-size:17px;font-weight:700;
+       padding:17px 24px;border-radius:14px;transition:transform .12s,box-shadow .12s;box-shadow:0 6px 18px rgba(70,48,31,.25)}
+  .cta:hover{transform:translateY(-1px)}
+  .cta.gold{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#3A2814;box-shadow:0 6px 18px rgba(217,160,54,.4)}
+
+  .opts{display:flex;flex-direction:column;gap:10px;margin:6px 0 18px}
+  .opt{background:var(--cream);border:2px solid var(--line);border-radius:14px;padding:15px 16px;font-size:16px;line-height:1.35;
+       cursor:pointer;text-align:left;transition:border-color .12s,background .12s,transform .12s;display:flex;align-items:center;gap:12px;width:100%;color:var(--ink)}
+  .opt:hover{border-color:var(--gold)}
+  .opt.selected{border-color:var(--gold);background:#FBF0D8;transform:scale(1.01)}
+  .opt .dot{flex:0 0 20px;height:20px;border-radius:50%;border:2px solid var(--line);position:relative;transition:border-color .12s}
+  .opt.multi .dot{border-radius:6px}
+  .opt.selected .dot{border-color:var(--gold-deep);background:var(--gold)}
+  .opt.selected .dot::after{content:"";position:absolute;inset:0;
+       background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2346301F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') center/12px no-repeat}
+
+  .nav{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .back{background:none;border:0;color:var(--ink-soft);font-size:15px;cursor:pointer;padding:12px 6px}
+  .back:hover{color:var(--ink)}
+  .next{background:var(--ink);color:#FFFBF2;border:0;border-radius:12px;font-size:15px;font-weight:700;padding:13px 26px;cursor:pointer}
+
+  /* loading */
+  .load-wrap{text-align:center;padding:60px 0 30px}
+  .ring{width:74px;height:74px;margin:0 auto 26px;border-radius:50%;border:6px solid var(--line);border-top-color:var(--marigold);animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .load-step{color:var(--ink-soft);font-size:15px;min-height:22px}
+
+  /* results */
+  .badge{display:inline-block;background:#FBF0D8;border:1px solid var(--gold);color:var(--gold-deep);font-size:12px;font-weight:800;
+       letter-spacing:.12em;padding:7px 14px;border-radius:999px;margin-bottom:6px}
+  .score-wrap{text-align:center;margin:10px 0 6px}
+  .dial{position:relative;width:190px;height:190px;margin:0 auto}
+  .dial svg{transform:rotate(-90deg)}
+  .dial .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .dial .num b{font-family:Georgia,serif;font-size:56px;line-height:1;color:var(--ink)}
+  .dial .num span{font-size:12px;color:var(--ink-soft);letter-spacing:.08em;margin-top:4px}
+  .grade{font-family:Georgia,serif;font-size:22px;text-align:center;margin:12px 0 2px}
+  .grade-sub{color:var(--ink-soft);font-size:14.5px;text-align:center;line-height:1.5;margin-bottom:20px}
+
+  .areas{display:flex;flex-direction:column;gap:11px;margin-bottom:22px}
+  .area{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .area.focus{border:2px solid var(--marigold);background:#FDF3E3}
+  .area .row{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:700;margin-bottom:7px}
+  .area .tag{background:var(--marigold);color:#fff;font-size:10px;font-weight:800;letter-spacing:.1em;padding:3px 8px;border-radius:999px;margin-left:8px}
+  .area .bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+  .area .bar i{display:block;height:100%;width:0%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold-deep));transition:width .9s cubic-bezier(.2,.7,.3,1)}
+  .area.focus .bar i{background:linear-gradient(90deg,var(--marigold),#C9701C)}
+
+  .card{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;font-size:15px;line-height:1.6;color:var(--ink)}
+  .card.hl{border:2px solid var(--marigold);background:#FDF3E3}
+  .card h3{font-family:Georgia,serif;font-size:19px;margin-bottom:8px}
+  .card ul{margin:10px 0 0 18px}
+  .card li{margin-bottom:7px}
+  .card .mech{color:var(--ink-soft);font-size:13.5px;margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+
+  .done-actions{display:flex;gap:10px}
+  .done-actions .cta{font-size:15px;padding:14px}
+  .ghost{background:none !important;color:var(--ink) !important;border:2px solid var(--line) !important;box-shadow:none !important}
+
+  .foot{margin-top:auto;padding-top:34px;text-align:center;color:var(--ink-soft);font-size:11px;line-height:1.6;opacity:.85}
+  .center{text-align:center}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="brand"><div class="word">Lutera</div></div>
+  <div class="brand-rule"></div>
+
+  <div class="progress" id="progress"><div class="fill" id="progressFill"></div></div>
+  <div class="step-count" id="stepCount"></div>
+
+  <!-- INTRO -->
+  <section class="screen active" id="intro">
+    <h1>How healthy are your eyes, <em>really</em>?</h1>
+    <p class="sub">Answer 11 quick questions — about 60 seconds — and get your personal <strong>Eye Health Score</strong>, graded across the 6 areas that decide how well you'll see in 10 years.</p>
+    <button class="cta gold" onclick="startQuiz()">Get my Eye Health Score →</button>
+    <p class="sub" style="font-size:13px;margin-top:14px">Included free with your Lutera bundle · No right or wrong answers</p>
+  </section>
+
+  <!-- QUESTIONS (built by JS) -->
+  <section class="screen" id="quiz">
+    <h2 id="qTitle"></h2>
+    <p class="q-sub" id="qSub"></p>
+    <div class="opts" id="qOpts"></div>
+    <div class="nav">
+      <button class="back" onclick="prevQ()">← Back</button>
+      <button class="next" id="nextBtn" onclick="nextQ()" style="visibility:hidden">Next →</button>
+    </div>
+  </section>
+
+  <!-- LOADING -->
+  <section class="screen" id="loading">
+    <div class="load-wrap">
+      <div class="ring"></div>
+      <h2 class="center">Scoring your eye health…</h2>
+      <p class="load-step" id="loadStep">Reading your answers…</p>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="screen" id="results">
+    <div class="center"><span class="badge">YOUR EYE HEALTH SCORE</span></div>
+    <div class="score-wrap">
+      <div class="dial">
+        <svg width="190" height="190" viewBox="0 0 190 190">
+          <circle cx="95" cy="95" r="84" fill="none" stroke="var(--line)" stroke-width="13"/>
+          <circle id="dialArc" cx="95" cy="95" r="84" fill="none" stroke="var(--gold)" stroke-width="13"
+                  stroke-linecap="round" stroke-dasharray="527.8" stroke-dashoffset="527.8"/>
+        </svg>
+        <div class="num"><b id="scoreNum">0</b><span>OUT OF 100</span></div>
+      </div>
+      <div class="grade" id="gradeTitle"></div>
+      <p class="grade-sub" id="gradeSub"></p>
+    </div>
+
+    <div class="areas" id="areaBars"></div>
+
+    <div class="card hl" id="focusCard"></div>
+
+    <div class="card">
+      <h3>The good news: your biggest input is already handled</h3>
+      Your macula — the part of your eye that does all your sharp, detailed seeing — is built from three
+      carotenoids: <strong>lutein, zeaxanthin, and meso-zeaxanthin</strong>. Your body can't make any of them on its own.
+      Lutera's Triple Carotenoid Formula delivers all three, every day. Take it daily — consistency is the whole game.
+      <div class="mech">Re-take this quiz in 30 days alongside your printed Lutera Home Vision Check, and watch your habits move the score.</div>
+    </div>
+
+    <div class="done-actions">
+      <button class="cta" onclick="location.reload()">Retake quiz</button>
+    </div>
+  </section>
+
+  <p class="foot">
+    This quiz is for general wellness purposes only — it is not a medical exam and cannot diagnose any condition.
+    See an eye-care professional for a comprehensive exam.<br>
+    Lutera is a dietary supplement. These statements have not been evaluated by the Food and Drug Administration.
+    This product is not intended to diagnose, treat, cure, or prevent any disease.
+  </p>
+</div>
+
+<script>
+/* ================= CONFIG ================= */
+const CONFIG = {
+  // Optional: POST the completed quiz payload (score, focus area, answers) to a
+  // webhook (Make / Klaviyo / ManyChat) for segmentation. Empty = console.log only.
+  WEBHOOK_URL: "",
+  AUTO_ADVANCE_MS: 350,
+  LOADING_MS: 3600
+};
+/* ========================================== */
+
+// Each option: [label, riskPoints 0–3]. area = which of the 6 score areas it feeds.
+const QUESTIONS = [
+  {area:"risk", title:"First things first — what's your age?", opts:[
+    ["Under 40",0],["40–49",1],["50–59",2],["60 or over",3]]},
+  {area:"dryness", title:"How often do your eyes feel dry, gritty, or irritated?", opts:[
+    ["Almost never",0],["Once in a while",1],["Most days",2],["All the time — it drives me crazy",3]]},
+  {area:"screen", title:"After a few hours on screens, how do your eyes feel?", opts:[
+    ["Totally fine",0],["A little tired",1],["Tired, dry, or slow to refocus",2],["Blurry or aching — I have to stop",3]]},
+  {area:"night", title:"How is your vision at night or in low light?", opts:[
+    ["Sharp — no problems",0],["OK, but headlights bother me a little",1],["Glare and dark roads are a real struggle",2],["I avoid driving at night now",3]]},
+  {area:"screen", title:"How many hours a day are your eyes on a screen?", opts:[
+    ["Under 3 hours",0],["3–6 hours",1],["6–10 hours",2],["10+ hours — screens run my day",3]]},
+  {area:"sun", title:"When you're out in bright sun, do you wear sunglasses?", opts:[
+    ["Always",0],["Most of the time",1],["Only on very bright days",2],["Rarely or never",3]]},
+  {area:"risk", title:"Do you smoke or vape?", opts:[
+    ["Never have",0],["Quit — used to",1],["Occasionally / socially",2],["Yes, regularly",3]]},
+  {area:"risk", title:"How much alcohol in a typical week?", opts:[
+    ["None, or rarely",0],["1–3 drinks",1],["4–7 drinks",2],["8 or more",3]]},
+  {area:"nutrition", title:"How often do you eat sugar or refined carbs (bread, pasta, sweets, soda)?", opts:[
+    ["Once a week or less",0],["A few times a week",1],["Most days",2],["Several times a day",3]]},
+  {area:"nutrition", multi:true, title:"Which of these eye-feeding foods do you eat most days?", sub:"Tap all that apply.", opts:[
+    ["Leafy greens (spinach, kale)",-1],["Eggs (yolk included)",-1],["Colorful fruit & veg (peppers, berries, citrus)",-1],["Oily fish (salmon, sardines)",-1],["Honestly? None of these",3]]},
+  {area:"risk", title:"Last one — any history of macular degeneration (AMD) in your family, or yourself?", opts:[
+    ["No — none that I know of",0],["Not sure",1],["It runs in my family",2],["I've been told I have early AMD",3]]},
+];
+
+const AREA_NAMES = {screen:"Screen habits", dryness:"Eye comfort", night:"Night vision",
+                    sun:"Sun protection", nutrition:"Eye nutrition", risk:"Long-term risk factors"};
+
+// Focus-area advice shown when that area is the lowest score. Keep compliance-safe:
+// habits + mechanism language only, no treatment claims.
+const FOCUS_CONTENT = {
+  screen:{title:"Screen habits", body:"Your eyes weren't designed to hold focus at arm's length for hours — that's what's driving the tired, blurry, end-of-day feeling.", tips:[
+    "Use 20-20-20: every 20 minutes, look at something 20 feet away for 20 seconds.",
+    "Push your screen to at least arm's length and bump the text size up.",
+    "Give your eyes a screen-free wind-down for the last 30 minutes before bed."]},
+  dryness:{title:"Eye comfort", body:"Gritty, burning, irritated eyes usually come down to one thing: your blink rate collapses when you concentrate, and your tear film dries out.", tips:[
+    "Practice full, slow blinks at the screen — most people's blink rate halves while scrolling.",
+    "Point fans, vents, and AC away from your face; consider a humidifier where you work.",
+    "Add oily fish (salmon, sardines) a couple of times a week — omega-3s feed your tear film."]},
+  night:{title:"Night vision", body:"Struggling with glare and dark roads is one of the first things people notice as their eyes age — it's also one of the most common reasons people stop trusting their vision.", tips:[
+    "Keep your windshield and glasses spotless — film and smudges multiply glare.",
+    "Dim your dashboard and avoid looking directly at oncoming headlights.",
+    "Your macular pigment acts like internal glare protection — feed it daily (that's what your Lutera is for)."]},
+  sun:{title:"Sun protection", body:"UV damage to your eyes is cumulative and silent — it adds up over decades, and you never feel it happening.", tips:[
+    "Wear UV400 sunglasses every time you're out in bright light, not just at the beach.",
+    "Add a brimmed hat on long outdoor days — it cuts overhead exposure your glasses miss.",
+    "Cloudy days count too: most UV gets through cloud cover."]},
+  nutrition:{title:"Eye nutrition", body:"The three carotenoids your macula is made of — lutein, zeaxanthin, and meso-zeaxanthin — can't be made by your body. If they're not coming in, your reserves run down.", tips:[
+    "Add a daily handful of leafy greens — spinach and kale are the heavyweights.",
+    "Eat the yolk: eggs are one of the most absorbable sources of lutein.",
+    "Stay consistent with your Lutera — it covers all three carotenoids every day."]},
+  risk:{title:"Long-term risk factors", body:"Some of this — age, family history — you can't change. That makes the inputs you CAN control matter more, not less.", tips:[
+    "If you smoke or vape, this is the single biggest lever you have. Full stop.",
+    "Book a comprehensive eye exam yearly, especially with family history of AMD.",
+    "Control the controllables daily: sun protection, screen breaks, and eye nutrition."]},
+};
+
+const GRADES = [
+  [85,"Excellent — protect it","Your habits are genuinely strong. The goal now is keeping the score there as your eyes age."],
+  [70,"Solid — a few leaks to plug","You're doing a lot right, but one area below is quietly dragging you down."],
+  [50,"Fair — your eyes are asking for backup","Nothing scary, but the daily strain is adding up faster than your habits are offsetting it."],
+  [30,"Under strain — time to take this seriously","Several areas are working against you at once. The upside: every one of them is fixable."],
+  [0,"Red zone — start today","Your eyes are carrying heavy daily load with very little protection. Small changes will move this score fast."]
+];
+
+let current = 0;
+const answers = QUESTIONS.map(q => q.multi ? [] : null);
+
+const $ = id => document.getElementById(id);
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  const el = $(id);
+  el.classList.remove("active"); void el.offsetWidth;
+  el.classList.add("active");
+  window.scrollTo({top:0});
+}
+
+function startQuiz(){
+  $("progress").style.visibility = "visible";
+  $("stepCount").style.visibility = "visible";
+  current = 0; renderQ();
+}
+
+function renderQ(){
+  const q = QUESTIONS[current];
+  $("qTitle").textContent = q.title;
+  $("qSub").textContent = q.sub || "";
+  $("progressFill").style.width = ((current) / QUESTIONS.length * 100) + "%";
+  $("stepCount").textContent = (current + 1) + " of " + QUESTIONS.length;
+  const box = $("qOpts"); box.innerHTML = "";
+  q.opts.forEach((opt, i) => {
+    const b = document.createElement("button");
+    b.className = "opt" + (q.multi ? " multi" : "");
+    b.innerHTML = '<span class="dot"></span><span>' + opt[0] + '</span>';
+    const sel = q.multi ? answers[current].includes(i) : answers[current] === i;
+    if (sel) b.classList.add("selected");
+    b.onclick = () => pick(i, b);
+    box.appendChild(b);
+  });
+  $("nextBtn").style.visibility = q.multi ? "visible" : (answers[current] !== null ? "visible" : "hidden");
+  $("nextBtn").textContent = current === QUESTIONS.length - 1 ? "See my score →" : "Next →";
+  show("quiz");
+}
+
+function pick(i, btn){
+  const q = QUESTIONS[current];
+  if (q.multi){
+    const none = q.opts.length - 1;                    // "none of these" clears the rest
+    let sel = answers[current];
+    if (i === none) sel = sel.includes(none) ? [] : [none];
+    else { sel = sel.filter(x => x !== none); sel.includes(i) ? sel = sel.filter(x => x !== i) : sel.push(i); }
+    answers[current] = sel;
+    renderQ();
+  } else {
+    answers[current] = i;
+    document.querySelectorAll("#qOpts .opt").forEach(o => o.classList.remove("selected"));
+    btn.classList.add("selected");
+    setTimeout(nextQ, CONFIG.AUTO_ADVANCE_MS);
+  }
+}
+
+function nextQ(){
+  const q = QUESTIONS[current];
+  if (!q.multi && answers[current] === null) return;
+  if (current < QUESTIONS.length - 1){ current++; renderQ(); }
+  else runScoring();
+}
+function prevQ(){
+  if (current > 0){ current--; renderQ(); }
+  else { $("progress").style.visibility = "hidden"; $("stepCount").style.visibility = "hidden"; show("intro"); }
+}
+
+function computeScore(){
+  const risk = {}, max = {};
+  QUESTIONS.forEach((q, qi) => {
+    risk[q.area] = risk[q.area] || 0; max[q.area] = max[q.area] || 0;
+    max[q.area] += 3;
+    if (q.multi){
+      let r = 3;
+      answers[qi].forEach(i => { r += q.opts[i][1]; });
+      risk[q.area] += Math.max(0, Math.min(3, r));
+    } else {
+      risk[q.area] += q.opts[answers[qi]][1];
+    }
+  });
+  const areas = {};
+  let totalRisk = 0, totalMax = 0;
+  for (const a in risk){
+    areas[a] = Math.round(100 - (risk[a] / max[a]) * 100);
+    totalRisk += risk[a]; totalMax += max[a];
+  }
+  const score = Math.round(100 - (totalRisk / totalMax) * 100);
+  const focus = Object.keys(areas).sort((x, y) => areas[x] - areas[y])[0];
+  return { score, areas, focus, focusName: AREA_NAMES[focus] };
+}
+
+function runScoring(){
+  $("progressFill").style.width = "100%";
+  $("stepCount").textContent = "";
+  show("loading");
+  const steps = ["Reading your screen habits…","Checking your eye-nutrition inputs…",
+                 "Weighing your long-term risk factors…","Grading all 6 areas…","Building your score…"];
+  let i = 0;
+  const t = setInterval(() => {
+    i++;
+    if (i < steps.length) $("loadStep").textContent = steps[i];
+  }, CONFIG.LOADING_MS / steps.length);
+  setTimeout(() => { clearInterval(t); showResults(); }, CONFIG.LOADING_MS);
+}
+
+function showResults(){
+  const r = computeScore();
+
+  // grade band
+  const g = GRADES.find(g => r.score >= g[0]);
+  $("gradeTitle").textContent = g[1];
+  $("gradeSub").textContent = g[2];
+
+  // area bars, weakest first
+  const box = $("areaBars"); box.innerHTML = "";
+  Object.keys(r.areas).sort((a, b) => r.areas[a] - r.areas[b]).forEach(a => {
+    const d = document.createElement("div");
+    d.className = "area" + (a === r.focus ? " focus" : "");
+    d.innerHTML = '<div class="row"><span>' + AREA_NAMES[a] + (a === r.focus ? '<span class="tag">FOCUS HERE</span>' : '') +
+                  '</span><span>' + r.areas[a] + '</span></div><div class="bar"><i data-w="' + r.areas[a] + '"></i></div>';
+    box.appendChild(d);
+  });
+
+  // focus card
+  const f = FOCUS_CONTENT[r.focus];
+  $("focusCard").innerHTML = '<h3>Your #1 focus area: ' + f.title + '</h3>' + f.body +
+    '<ul>' + f.tips.map(t => '<li>' + t + '</li>').join('') + '</ul>';
+
+  show("results");
+
+  // animate dial + bars
+  const CIRC = 527.8;
+  requestAnimationFrame(() => {
+    $("dialArc").style.transition = "stroke-dashoffset 1.2s cubic-bezier(.2,.7,.3,1)";
+    $("dialArc").style.strokeDashoffset = CIRC * (1 - r.score / 100);
+    document.querySelectorAll("#areaBars .bar i").forEach(el => { el.style.width = el.dataset.w + "%"; });
+  });
+  let n = 0;
+  const count = setInterval(() => {
+    n = Math.min(r.score, n + Math.max(1, Math.round(r.score / 40)));
+    $("scoreNum").textContent = n;
+    if (n >= r.score) clearInterval(count);
+  }, 28);
+
+  // optional analytics/segmentation ping
+  const payload = {
+    source: "lutera-eye-score-quiz",
+    submittedAt: new Date().toISOString(),
+    score: r.score, focusArea: r.focusName, areaScores: r.areas,
+    answers: QUESTIONS.map((q, i) => ({
+      question: q.title,
+      answer: q.multi ? answers[i].map(x => q.opts[x][0]) : q.opts[answers[i]][0]
+    }))
+  };
+  if (CONFIG.WEBHOOK_URL){
+    fetch(CONFIG.WEBHOOK_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload)})
+      .catch(e => console.error("Webhook failed", e));
+  } else {
+    console.log("QUIZ PAYLOAD (set CONFIG.WEBHOOK_URL to send this somewhere):", payload);
+  }
+}
+
+</script>
+</body>
+</html>
